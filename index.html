@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blueprint Architect — Structural Portfolio</title>
+<meta name="description" content="The Architect's Blueprint. Brutalist structural design studio. Case studies in concrete, steel and glass."/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: "#1A1A1A",
+          background: "#F9F8F6",
+          surface: "#F0EFEA",
+          text: "#1A1A1A",
+          muted: "#9CA3AF",
+          accent: "#0047AB",
+        },
+        fontFamily: {
+          serif: ["Newsreader", "serif"],
+          sans: ["Space Grotesk", "sans-serif"],
+          mono: ["JetBrains Mono", "monospace"],
+        },
+        borderWidth: { '1': '1px' },
+        transitionTimingFunction: { technical: "cubic-bezier(0.16, 1, 0.3, 1)" },
+        backgroundImage: {
+          'hashing': 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(156, 163, 175, 0.1) 10px, rgba(156, 163, 175, 0.1) 20px)',
+        }
+      },
+    },
+  }
+</script>
+<style>
+  body { background-color: #F9F8F6; color: #1A1A1A; -webkit-font-smoothing: antialiased; }
+  .grid-lines::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: linear-gradient(to right, rgba(26,26,26,0.06) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(26,26,26,0.06) 1px, transparent 1px);
+    background-size: 8.333333% 8.333333vw; pointer-events: none; z-index: -1;
+  }
+  .project-card:hover .project-image { filter: grayscale(0%); }
+  .project-card:hover { border-color: #0047AB; }
+  .project-card:hover .data-ribbon { transform: translateY(0); opacity: 1; }
+  @keyframes skeleton-pulse { 0%,100%{opacity:.6} 50%{opacity:.8} }
+  .skeleton { animation: skeleton-pulse 2s infinite ease-in-out; }
+  html { scroll-behavior: smooth; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  ::selection { background: #0047AB; color: #F9F8F6; }
+</style>
+</head>
+<body class="grid-lines min-h-screen font-serif flex flex-col relative overflow-x-hidden">
+
+<!-- TopNav -->
+<div class="sticky top-0 flex h-auto w-full flex-col bg-background/90 backdrop-blur-sm z-50 border-b-1 border-primary/20">
+<div class="px-4 md:px-10 lg:px-20 flex flex-1 justify-center py-2 w-full">
+<div class="flex flex-col w-full max-w-[1440px]">
+<header class="flex items-center justify-between whitespace-nowrap px-2 lg:px-10 py-3 w-full">
+<a href="#top" class="flex items-center gap-4 text-primary">
+<div class="size-4">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path></svg>
+</div>
+<h2 class="text-primary text-lg font-bold tracking-[-0.015em] font-sans uppercase">Blueprint Architect</h2>
+</a>
+<nav class="flex-1 justify-end gap-9 hidden md:flex font-mono text-[10px] uppercase tracking-[0.15em] font-medium items-center">
+<a class="text-primary hover:text-accent transition-colors duration-300" href="#manifesto">Manifesto</a>
+<a class="text-primary hover:text-accent transition-colors duration-300" href="#work">Case Studies</a>
+<a class="text-primary hover:text-accent transition-colors duration-300" href="#specs">Specifications</a>
+<a class="text-primary hover:text-accent transition-colors duration-300" href="#contact">Contact</a>
+</nav>
+<button id="menuBtn" class="md:hidden text-primary" aria-label="Menu"><span class="material-symbols-outlined">menu</span></button>
+</header>
+<nav id="mobileMenu" class="hidden md:hidden flex-col gap-4 px-2 pb-4 font-mono text-xs uppercase tracking-[0.15em]">
+<a class="text-primary hover:text-accent" href="#manifesto">Manifesto</a>
+<a class="text-primary hover:text-accent" href="#work">Case Studies</a>
+<a class="text-primary hover:text-accent" href="#specs">Specifications</a>
+<a class="text-primary hover:text-accent" href="#contact">Contact</a>
+</nav>
+</div>
+</div>
+</div>
+
+<main id="top" class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 lg:px-20 relative">
+
+<!-- Background math annotations -->
+<div class="absolute top-10 right-6 font-mono text-[10px] text-muted/50 hidden lg:block text-right leading-relaxed">
+  x² / a² + y² / b² − z² / c² = 1<br/>
+  ∑ F_y = 0, ∑ M_z = 0<br/>
+  σ_max = M c / I
+</div>
+
+<!-- HERO -->
+<section class="pt-20 md:pt-28 pb-24 md:pb-32 relative">
+<div class="ml-0 lg:ml-[8.333333%] border-l-1 border-primary/30 pl-6">
+<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-6 font-bold border-b-1 border-primary/20 inline-block pb-1">[01] STRUCTURAL DESIGN STUDIO — EST. 2009</p>
+<h1 class="text-5xl md:text-7xl lg:text-[8rem] font-normal tracking-[-0.03em] leading-[0.88] text-primary max-w-5xl">
+  We engineer<br/><span class="italic text-muted font-light">the impossible.</span>
+</h1>
+<p class="mt-10 max-w-xl font-sans text-base text-primary/70 leading-relaxed">Concrete, steel, and tension — resolved into form. A studio building landmarks that outlast their century.</p>
+<div class="mt-10 flex flex-wrap gap-4 font-mono text-[10px] uppercase tracking-[0.15em]">
+<a href="#work" class="bg-primary text-background px-6 py-3 hover:bg-accent transition-colors duration-300">View Case Studies →</a>
+<a href="#contact" class="border-1 border-primary/30 px-6 py-3 hover:border-accent hover:text-accent transition-colors duration-300">Commission a Project</a>
+</div>
+</div>
+<!-- Stat strip -->
+<div class="mt-20 grid grid-cols-2 md:grid-cols-4 border-1 border-primary/20 bg-surface/60 font-mono">
+<div class="p-6 border-b-1 md:border-b-0 md:border-r-1 border-primary/20"><span class="block text-3xl font-sans font-bold text-primary">42</span><span class="text-[9px] uppercase tracking-widest text-muted">Built Structures</span></div>
+<div class="p-6 border-b-1 md:border-b-0 md:border-r-1 border-primary/20"><span class="block text-3xl font-sans font-bold text-primary">19</span><span class="text-[9px] uppercase tracking-widest text-muted">Countries</span></div>
+<div class="p-6 border-b-1 md:border-b-0 border-r-1 border-primary/20"><span class="block text-3xl font-sans font-bold text-primary">07</span><span class="text-[9px] uppercase tracking-widest text-muted">Awards</span></div>
+<div class="p-6"><span class="block text-3xl font-sans font-bold text-accent">∞</span><span class="text-[9px] uppercase tracking-widest text-muted">Load Capacity</span></div>
+</div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto" class="py-24 border-t-1 border-primary/20 reveal">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-3">
+<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold border-b-1 border-primary/20 inline-block pb-1">[02] MANIFESTO</p>
+</div>
+<div class="lg:col-span-8 lg:col-start-5">
+<h2 class="text-3xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-primary">Form follows <span class="italic text-muted">force.</span> Every line we draw answers to gravity, wind, and time — never to fashion.</h2>
+<p class="mt-8 font-sans text-base text-primary/70 max-w-2xl leading-relaxed">We treat each project as a structural argument: a hypothesis tested against load, weather, and a hundred years of service. The result is architecture that reads honestly — material doing exactly what material must.</p>
+</div>
+</div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="py-12 md:py-20 border-t-1 border-primary/20">
+<header class="mb-24 border-l-1 border-primary/30 pl-6 ml-0 lg:ml-[8.333333%] relative reveal">
+<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-4 font-bold border-b-1 border-primary/20 inline-block pb-1">[03] ENGINEERING CONSTRUCTS</p>
+<h2 class="text-5xl md:text-7xl lg:text-[7rem] font-normal tracking-[-0.03em] leading-[0.9] text-primary max-w-4xl">Structural <br/><span class="italic text-muted font-light">Achievements</span></h2>
+</header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8 auto-rows-min relative z-10">
+
+<!-- Project 01 -->
+<article class="project-card reveal group relative flex flex-col border-1 border-primary/20 bg-surface transition-colors duration-500 ease-technical lg:col-span-5 lg:col-start-2 cursor-crosshair shadow-sm hover:shadow-md">
+<div class="font-mono text-[9px] uppercase tracking-widest p-2 border-b-1 border-primary/20 flex justify-between text-muted"><span>CASE_STUDY_01</span><span>DOC.REF: AL-842</span></div>
+<div class="relative w-full aspect-[4/3] overflow-hidden border-b-1 border-primary/20 bg-hashing skeleton">
+<img class="project-image absolute inset-0 w-full h-full object-cover grayscale transition-all duration-[800ms] ease-technical z-10 opacity-0" alt="Brutalist concrete structure" onload="this.classList.remove('opacity-0');this.parentElement.classList.remove('skeleton')" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=1200&q=80"/>
+<div class="data-ribbon absolute bottom-0 left-0 right-0 h-8 bg-primary/90 backdrop-blur text-background flex items-center justify-between px-4 font-mono text-[10px] uppercase tracking-wider transform translate-y-full opacity-0 transition-all duration-300 ease-technical z-20"><span>SYS.REQ: VERIFIED</span><span>ID: 0x1A</span></div>
+</div>
+<div class="p-6 flex flex-col h-full bg-background/50">
+<h3 class="font-sans text-sm font-bold uppercase tracking-[0.1em] mb-4 text-primary border-b-1 border-primary/10 pb-2">Project 01: The Monolith</h3>
+<div class="font-mono text-[10px] text-primary/70 flex-grow grid grid-cols-2 gap-x-4 gap-y-2">
+<div class="border-l-1 border-primary/20 pl-2"><span class="text-muted block text-[8px] mb-1">COORDINATES</span>40.7128° N<br/>74.0060° W</div>
+<div class="border-l-1 border-primary/20 pl-2"><span class="text-muted block text-[8px] mb-1">SPECIFICATIONS</span>45,000 MT<br/>+120M AMSL</div>
+<div class="col-span-2 border-l-1 border-primary/20 pl-2 mt-2 pt-2 border-t-1 border-primary/10"><span class="text-muted block text-[8px] mb-1">PRIMARY MATERIAL</span>C80/95 ULTRA-HIGH PERFORMANCE CONCRETE</div>
+</div>
+<div class="mt-6 text-right"><button class="font-mono text-xs text-primary font-bold hover:text-accent transition-colors tracking-widest">[ EXAMINE ]</button></div>
+</div>
+</article>
+
+<!-- Project 02 -->
+<article class="project-card reveal group relative flex flex-col border-1 border-primary/20 bg-surface transition-colors duration-500 ease-technical lg:col-span-4 lg:col-start-8 mt-0 lg:mt-32 cursor-crosshair shadow-sm hover:shadow-md">
+<div class="font-mono text-[9px] uppercase tracking-widest p-2 border-b-1 border-primary/20 flex justify-between text-muted"><span>CASE_STUDY_02</span><span>DOC.REF: ST-119</span></div>
+<div class="relative w-full aspect-square overflow-hidden border-b-1 border-primary/20 bg-hashing skeleton">
+<img class="project-image absolute inset-0 w-full h-full object-cover grayscale transition-all duration-[800ms] ease-technical z-10 opacity-0" alt="Steel and glass detail" onload="this.classList.remove('opacity-0');this.parentElement.classList.remove('skeleton')" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80"/>
+<div class="data-ribbon absolute bottom-0 left-0 right-0 h-8 bg-primary/90 backdrop-blur text-background flex items-center justify-between px-4 font-mono text-[10px] uppercase tracking-wider transform translate-y-full opacity-0 transition-all duration-300 ease-technical z-20"><span>SYS.REQ: VERIFIED</span><span>ID: 0x2B</span></div>
+</div>
+<div class="p-6 flex flex-col h-full bg-background/50">
+<h3 class="font-sans text-sm font-bold uppercase tracking-[0.1em] mb-4 text-primary border-b-1 border-primary/10 pb-2">Glass &amp; Concrete</h3>
+<div class="font-mono text-[10px] text-primary/70 flex-grow grid grid-cols-2 gap-x-4 gap-y-2">
+<div class="border-l-1 border-primary/20 pl-2"><span class="text-muted block text-[8px] mb-1">COORDINATES</span>34.0522° N<br/>118.2437° W</div>
+<div class="border-l-1 border-primary/20 pl-2"><span class="text-muted block text-[8px] mb-1">SPECIFICATIONS</span>32,000 MT<br/>+45M AMSL</div>
+<div class="col-span-2 border-l-1 border-primary/20 pl-2 mt-2 pt-2 border-t-1 border-primary/10"><span class="text-muted block text-[8px] mb-1">PRIMARY MATERIAL</span>A913 HIGH-TENSILE STRUCTURAL STEEL</div>
+</div>
+<div class="mt-6 text-right"><button class="font-mono text-xs text-primary font-bold hover:text-accent transition-colors tracking-widest">[ EXAMINE ]</button></div>
+</div>
+</article>
+
+<!-- Project 03 -->
+<article class="project-card reveal group relative flex flex-col border-1 border-primary/20 bg-surface transition-colors duration-500 ease-technical lg:col-span-6 lg:col-start-3 lg:mt-16 cursor-crosshair shadow-sm hover:shadow-md">
+<div class="font-mono text-[9px] uppercase tracking-widest p-2 border-b-1 border-primary/20 flex justify-between text-muted"><span>CASE_STUDY_03</span><span>DOC.REF: CT-904</span></div>
+<div class="relative w-full aspect-[16/9] overflow-hidden border-b-1 border-primary/20 bg-hashing skeleton">
+<img class="project-image absolute inset-0 w-full h-full object-cover grayscale transition-all duration-[800ms] ease-technical z-10 opacity-0" alt="Concrete cantilever" onload="this.classList.remove('opacity-0');this.parentElement.classList.remove('skeleton')" src="https://images.unsplash.com/photo-1470723710355-95304d8aece4?w=1400&q=80"/>
+<div class="data-ribbon absolute bottom-0 left-0 right-0 h-8 bg-primary/90 backdrop-blur text-background flex items-center justify-between px-4 font-mono text-[10px] uppercase tracking-wider transform translate-y-full opacity-0 transition-all duration-300 ease-technical z-20"><span>SYS.REQ: VERIFIED</span><span>ID: 0x3C</span></div>
+</div>
+<div class="p-6 flex flex-col sm:flex-row justify-between items-start bg-background/50 gap-6">
+<div class="flex-1 w-full">
+<h3 class="font-sans text-sm font-bold uppercase tracking-[0.1em] mb-4 text-primary border-b-1 border-primary/10 pb-2">Brutal Vertex</h3>
+<div class="font-mono text-[10px] text-primary/70 grid grid-cols-2 gap-4">
+<div class="border-l-1 border-primary/20 pl-2"><span class="text-muted block text-[8px] mb-1">COORDINATES</span>51.5074° N, 0.1278° W</div>
+<div class="border-l-1 border-primary/20 pl-2"><span class="text-muted block text-[8px] mb-1">SPECIFICATIONS</span>61,000 MT, +210M AMSL</div>
+<div class="col-span-2 border-l-1 border-primary/20 pl-2 border-t-1 border-primary/10 pt-2"><span class="text-muted block text-[8px] mb-1">STRUCTURAL SYSTEM</span>POST-TENSIONED CONCRETE CANTILEVER w/ CARBON FIBER REINFORCEMENT</div>
+</div>
+</div>
+<div class="mt-auto pt-4 sm:pt-0"><button class="font-mono text-xs text-primary font-bold hover:text-accent transition-colors tracking-widest whitespace-nowrap">[ EXAMINE ]</button></div>
+</div>
+</article>
+
+<!-- End of directory -->
+<div class="lg:col-span-3 lg:col-start-9 lg:mt-16 border-1 border-dashed border-primary/30 flex flex-col items-center justify-center p-12 text-center h-full min-h-[300px] bg-surface/50 backdrop-blur-sm reveal">
+<span class="material-symbols-outlined text-muted text-4xl mb-4">architecture</span>
+<p class="font-mono text-[11px] font-bold tracking-widest text-primary mb-2">END OF DIRECTORY</p>
+<p class="font-mono text-[9px] text-muted uppercase">Further blueprints restricted.</p>
+</div>
+</div>
+</section>
+
+<!-- SPECS -->
+<section id="specs" class="py-24 border-t-1 border-primary/20 reveal">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="lg:col-span-3">
+<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold border-b-1 border-primary/20 inline-block pb-1">[04] SPECIFICATIONS</p>
+<h2 class="mt-6 text-4xl font-light leading-tight text-primary">What we<br/><span class="italic text-muted">build with.</span></h2>
+</div>
+<div class="lg:col-span-8 lg:col-start-5 grid grid-cols-1 md:grid-cols-2 gap-px bg-primary/15 border-1 border-primary/15 font-mono">
+<div class="bg-background p-6"><span class="material-symbols-outlined text-accent text-2xl mb-3">foundation</span><h3 class="font-sans text-sm font-bold uppercase tracking-wider text-primary mb-2">Structural Engineering</h3><p class="text-[11px] text-primary/60 leading-relaxed">FEA-driven load analysis, seismic resolution, and lifetime fatigue modeling.</p></div>
+<div class="bg-background p-6"><span class="material-symbols-outlined text-accent text-2xl mb-3">architecture</span><h3 class="font-sans text-sm font-bold uppercase tracking-wider text-primary mb-2">Form Design</h3><p class="text-[11px] text-primary/60 leading-relaxed">Geometry derived from force diagrams — honest, computed, inevitable.</p></div>
+<div class="bg-background p-6"><span class="material-symbols-outlined text-accent text-2xl mb-3">deployed_code</span><h3 class="font-sans text-sm font-bold uppercase tracking-wider text-primary mb-2">Material Science</h3><p class="text-[11px] text-primary/60 leading-relaxed">UHPC, carbon-fiber tensioning, A913 steel — specified to the megapascal.</p></div>
+<div class="bg-background p-6"><span class="material-symbols-outlined text-accent text-2xl mb-3">construction</span><h3 class="font-sans text-sm font-bold uppercase tracking-wider text-primary mb-2">Site Execution</h3><p class="text-[11px] text-primary/60 leading-relaxed">On-site supervision from first pour to load certification.</p></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 border-t-1 border-primary/20 reveal">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-5">
+<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold border-b-1 border-primary/20 inline-block pb-1">[05] CONTACT</p>
+<h2 class="mt-6 text-5xl md:text-6xl font-light leading-[0.95] tracking-[-0.02em] text-primary">Commission<br/><span class="italic text-muted">a structure.</span></h2>
+<div class="mt-10 font-mono text-[11px] uppercase tracking-widest text-primary/70 space-y-3">
+<p>STUDIO@BLUEPRINT-ARCH.COM</p>
+<p>+1 (212) 555 — 0147</p>
+<p>14 STEEL ROW, NEW YORK, NY</p>
+</div>
+</div>
+<form class="lg:col-span-6 lg:col-start-7 border-1 border-primary/20 bg-surface/60 p-6 md:p-8 font-mono" onsubmit="event.preventDefault(); this.reset(); document.getElementById('formOk').classList.remove('hidden');">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="flex flex-col gap-1 text-[9px] uppercase tracking-widest text-muted">Name<input required type="text" class="bg-background border-1 border-primary/20 px-3 py-2 text-xs text-primary focus:border-accent focus:ring-0"/></label>
+<label class="flex flex-col gap-1 text-[9px] uppercase tracking-widest text-muted">Email<input required type="email" class="bg-background border-1 border-primary/20 px-3 py-2 text-xs text-primary focus:border-accent focus:ring-0"/></label>
+</div>
+<label class="flex flex-col gap-1 text-[9px] uppercase tracking-widest text-muted mt-4">Project Brief<textarea required rows="4" class="bg-background border-1 border-primary/20 px-3 py-2 text-xs text-primary focus:border-accent focus:ring-0"></textarea></label>
+<button type="submit" class="mt-6 w-full bg-primary text-background py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-accent transition-colors duration-300">Transmit Brief →</button>
+<p id="formOk" class="hidden mt-4 text-[10px] uppercase tracking-widest text-accent">✓ Brief received. Response within 48h.</p>
+</form>
+</div>
+</section>
+
+</main>
+
+<footer class="border-t-1 border-primary/20 py-8 mt-auto w-full z-10 bg-background/90 backdrop-blur-sm">
+<div class="max-w-[1440px] mx-auto px-4 lg:px-20 flex flex-col md:flex-row gap-3 justify-between items-center font-mono text-[10px] tracking-widest text-primary/60 uppercase">
+<span>© 2026 Blueprint Architect</span>
+<div class="flex gap-6"><a href="#" class="hover:text-accent">Instagram</a><a href="#" class="hover:text-accent">LinkedIn</a><a href="#" class="hover:text-accent">Are.na</a></div>
+<span>ENG.SYS.OP.NORMAL</span>
+</div>
+</footer>
+
+<script>
+  // mobile menu
+  const mb = document.getElementById('menuBtn'), mm = document.getElementById('mobileMenu');
+  mb.addEventListener('click', () => mm.classList.toggle('hidden'));
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mm.classList.add('hidden')));
+
+  // preloaded images
+  document.querySelectorAll('.project-image').forEach(img => {
+    if (img.complete) { img.classList.remove('opacity-0'); img.parentElement.classList.remove('skeleton'); }
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
